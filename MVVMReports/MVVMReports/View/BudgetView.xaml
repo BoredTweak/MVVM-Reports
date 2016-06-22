@@ -159,7 +159,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Amount" Grid.Column="0" HorizontalAlignment="Center" Foreground="#FFFFFFFF" FontWeight="Bold"/>
-                            <TextBox Width="120" Grid.Column="1" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold"/>
+                            <TextBox Width="120" Grid.Column="1" Text="{Binding NewExpense.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold"/>
                         </Grid>
 
                         <Grid>
@@ -168,7 +168,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Category" Grid.Column="0" HorizontalAlignment="Center" Foreground="#FFFFFFFF" FontWeight="Bold"/>
-                            <ComboBox Width="120" Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold"/>
+                            <TextBox Width="120" Grid.Column="1" Text="{Binding NewExpense.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontWeight="Bold"/>
                         </Grid>
 
                         <Grid>
@@ -177,7 +177,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Due Date" Grid.Column="0" HorizontalAlignment="Center" Foreground="#FFFFFFFF" FontWeight="Bold"/>
-                            <DatePicker Width="120" Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold"/>
+                            <DatePicker Width="120" Grid.Column="1" SelectedDate="{Binding NewExpense.DueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontWeight="Bold"/>
                         </Grid>
 
                         <Grid>
@@ -186,7 +186,15 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Note" Grid.Column="0" HorizontalAlignment="Center" Foreground="#FFFFFFFF" FontWeight="Bold"/>
-                            <TextBox Width="120" Grid.Column="1" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold"/>
+                            <TextBox Width="120" Grid.Column="1" Text="{Binding NewExpense.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Width="120" Grid.ColumnSpan="2" Command="{Binding InsertExpenseCommand}" HorizontalAlignment="Center" Content="Add" FontWeight="Bold"/>
                         </Grid>
 
                     </StackPanel>

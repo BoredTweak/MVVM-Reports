@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Windows.Data;
 using System;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace MVVMReports
 {
     public class BudgetViewModel : INotifyPropertyChanged
     {
+        #region Constructor
         /// <summary>
         /// Test WPF for proper loading
         /// </summary>
         public BudgetViewModel()
         {
             budgetViewSource = new CollectionViewSource();
-
+            InsertExpenseCommand = new RelayCommand(InsertExpense);
+            NewExpense = new ExpenseViewModel();
             List<Expense> test = new List<Expense>();
             Expense data = new Expense("Gas", 4.5f, DateTime.Today);
             Expense data2 = new Expense("Redbull", 2.5f, DateTime.Today);
@@ -31,8 +35,43 @@ namespace MVVMReports
         public BudgetViewModel(List<Expense> expenseList)
         {
             budgetViewSource = new CollectionViewSource();
+            InsertExpenseCommand = new RelayCommand(InsertExpense);
+            NewExpense = new ExpenseViewModel();
+
+        }
+        #endregion
+
+        private List<Expense> expenses;
+        public List<Expense> Expenses
+        {
+            get
+            {
+                return expenses;
+            }
+            set
+            {
+                expenses = value;
+                SetFilteredPurchaseOrders();
+                RaisePropertyChanged("Expenses");
+            }
         }
 
+        private ExpenseViewModel newExpense;
+        public ExpenseViewModel NewExpense
+        {
+            get
+            {
+
+                return newExpense;
+            }
+            set
+            {
+                newExpense = value;
+                RaisePropertyChanged("NewExpense");
+            }
+        }
+
+        #region Filter
         internal CollectionViewSource budgetViewSource { get; set; }
         public ICollectionView AllBudgetItems
         {
@@ -61,26 +100,12 @@ namespace MVVMReports
             budgetViewSource.View.Refresh();
         }
 
-        private List<Expense> expenses;
-        public List<Expense> Expenses
-        {
-            get
-            {
-                return expenses;
-            }
-            set
-            {
-                expenses = value;
-                SetFilteredPurchaseOrders();
-                RaisePropertyChanged("Expenses");
-            }
-        }
-
         private void SetFilteredPurchaseOrders()
         {
             budgetViewSource = new CollectionViewSource();
             budgetViewSource.Source = Expenses;
             budgetViewSource.Filter += ExpenseFilter;
+            budgetViewSource.View.Refresh();
         }
 
         private void ExpenseFilter(object sender, FilterEventArgs e)
@@ -100,6 +125,28 @@ namespace MVVMReports
                 e.Accepted = false;
             }
         }
+        #endregion
+
+        #region Commands
+        public void InsertExpense(object obj)
+        {
+            List<Expense> test = Expenses;
+            test.Add(NewExpense.NewExpense);
+            Expenses = test;
+            RaisePropertyChanged("AllBudgetItems");
+            NewExpense.ResetExpense();
+        }
+
+        private ICommand insertExpenseCommand;
+        public ICommand InsertExpenseCommand
+        {
+            get { return insertExpenseCommand; }
+            set
+            {
+                insertExpenseCommand = value;
+            }
+        }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string prop)

@@ -20,5 +20,10 @@ namespace MVVMReports
             this.DueDate = date;
             this.Note = note;
         }
+
+        public Expense()
+        {
+
+        }
     }
 }
