@@ -8,7 +8,7 @@ using System.Windows.Media;
  Source: http://www.thomaslevesque.com/2009/08/04/wpf-automatically-sort-a-gridview-continued/
  */
 
-namespace MVVMReports
+namespace MVVMReports.UIExtension
 {
     public class GridViewSort
     {

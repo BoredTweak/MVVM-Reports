@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Windows.Data;
 using System;
-using System.ComponentModel;
 using System.Windows.Input;
+using MVVMReports.Model;
+using MVVMReports.UIExtension;
 
-namespace MVVMReports
+namespace MVVMReports.ViewModel
 {
     public class BudgetViewModel : INotifyPropertyChanged
     {

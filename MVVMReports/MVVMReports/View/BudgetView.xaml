@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MVVMReports">
+             xmlns:local="clr-namespace:MVVMReports"
+             xmlns:ViewModels="clr-namespace:MVVMReports.ViewModel"
+             xmlns:UIExtensions="clr-namespace:MVVMReports.UIExtension">
     <UserControl.DataContext>
-        <local:BudgetViewModel x:Name="BudgetViewModel"/>
+        <ViewModels:BudgetViewModel x:Name="BudgetViewModel"/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style x:Key="MetroWindowButtonStyle" TargetType="{x:Type Button}">
@@ -201,31 +203,31 @@
                 </Grid>
             </Border>
             
-            <ListView Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="1" Margin="20" ItemsSource="{Binding AllBudgetItems}" IsSynchronizedWithCurrentItem="True" local:GridViewSort.AutoSort="True" AlternationCount="2">
+            <ListView Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="1" Margin="20" ItemsSource="{Binding AllBudgetItems}" IsSynchronizedWithCurrentItem="True" UIExtensions:GridViewSort.AutoSort="True" AlternationCount="2">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn local:GridViewSort.PropertyName="Category" Header="Category">
+                        <GridViewColumn UIExtensions:GridViewSort.PropertyName="Category" Header="Category">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock TextAlignment="Center" Text="{Binding Category}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn local:GridViewSort.PropertyName="Amount" Header="Amount">
+                        <GridViewColumn UIExtensions:GridViewSort.PropertyName="Amount" Header="Amount">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock TextAlignment="Center" Text="{Binding Amount}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn local:GridViewSort.PropertyName="DueDate" Header="DueDate">
+                        <GridViewColumn UIExtensions:GridViewSort.PropertyName="DueDate" Header="DueDate">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock TextAlignment="Center" Text="{Binding DueDate}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn local:GridViewSort.PropertyName="Note" Header="Note">
+                        <GridViewColumn UIExtensions:GridViewSort.PropertyName="Note" Header="Note">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock TextAlignment="Center" Text="{Binding Note}"/>

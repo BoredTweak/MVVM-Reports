@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Windows.Data;
 using System;
 using System.Windows.Input;
+using MVVMReports.Model;
 
-namespace MVVMReports
+namespace MVVMReports.ViewModel
 {
     public class ExpenseViewModel : INotifyPropertyChanged
     {

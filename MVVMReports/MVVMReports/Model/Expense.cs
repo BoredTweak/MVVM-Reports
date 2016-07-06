@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVVMReports
+namespace MVVMReports.Model
 {
     public class Expense
     {
