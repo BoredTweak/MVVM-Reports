@@ -54,8 +54,8 @@
     <Compile Include="Model\Budget.cs" />
     <Compile Include="Model\Expense.cs" />
     <Compile Include="StringExtensions.cs" />
-    <Compile Include="UIExtension\GridViewSort.cs" />
-    <Compile Include="UIExtension\RelayCommand.cs" />
+    <Compile Include="Helpers\GridViewSort.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="ViewModel\BudgetViewModel.cs" />
     <Compile Include="ViewModel\ExpenseViewModel.cs" />
     <Compile Include="View\PageSwitcher.xaml.cs">
